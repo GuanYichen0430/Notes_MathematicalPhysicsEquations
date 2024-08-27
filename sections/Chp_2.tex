@@ -1,0 +1,198 @@
+% !TEX root = ../mat999.tex
+\newpage
+\section{线性偏微分方程}
+\subsection{常微分方程的情形}
+\subsubsection{常系数齐次ODE}
+针对二阶线性齐次方程$x''+a_1x'+a_2x=0, \lambda_1,\lambda_2$为其特征方程$\lambda^2+a_1\lambda+a_2=0$的两根
+$(\lambda_{1,2}=\alpha\pm i\beta)$，其通解为：
+
+$$\begin{aligned}
+    (i)&&\Delta>0:\quad&x=c_1e^{\lambda_1t}+c_2e^{\lambda_2t}\\
+    (ii)&&\Delta=0:\quad&x=(c_1+c_2t)e^{\lambda_1t}\\
+    (iii)&&\Delta<0:\quad&x=(c_1\cos\beta t+c_2\sin\beta t)e^{\alpha t}
+\end{aligned}$$
+
+\subsubsection{非齐次ODE}
+$$\left\{
+    \begin{aligned}
+    &
+    y''(x)+P(x)y'(x)+Q(x)y(x)=F(x)\\
+    &y|_{x=a}=0,y|_{x=b}=0
+            \end{aligned}
+    \right.$$
+
+    关键是先写出一个特解$y_p(x)$满足ODE，不必满足边界条件
+    
+    通解$y(x)=C_1y_1(x)+C_2y_2(x)+y_p(x)$
+
+    $y_1(x),y_2(x)$为齐次方程的一组线性无关解：
+$$y_1''+Py_1'+Qy_1=0,y_2''+Py_2'+Qy_2=0$$
+
+$y_p(x)=\int_a^xw(x;s)ds$是非齐次ODE的特解，可由齐次化原理写出
+
+\subsection{线性偏微分方程的一般理论：叠加性和解的结构}
+把线性偏微分方程统一写成算符形式：
+$$L(u)=f$$
+$$\begin{aligned}
+    \text{波动方程：}&&\frac {\partial ^2u}{\partial t^2}- a^2\frac {\partial ^2u}{\partial x^2}=f
+    &\quad L=\frac{\partial^2}{\partial t^2}-a^2\frac{\partial^2}{\partial x^2}\\
+    \text{热传导：}&&\frac{\partial{u}}{\partial{t}}-D\nabla^2u=f
+    &\quad L=\frac\partial{\partial t}-D\nabla^2\\
+    \text{泊松方程：}&&\nabla^2u=f
+    &\quad L=\nabla^2
+\end{aligned}$$
+其中
+
+u：未知函数
+
+f：已知函数，方程的非齐次项
+
+L：线性算符
+
+$f=0$：齐次方程
+
+$f\neq0$：非齐次方程
+\begin{thm}[解的叠加原理]$\ $
+
+    1. $L(u_1)=0,L(u_2)=0\Rightarrow L(c_1u_1+c_2u_2)=0$
+
+    2. $L(u_1)=0,L(u_2)=f\Rightarrow L(u_1+u_2)=f$
+
+    非齐次方程的特解+相应齐次方程的解仍然是非齐次方程的解
+
+    非齐次方程的通解 =非齐次方程的任一特解 + 相应齐次方程的通解
+
+    3. $L(u_1)=f_1,L(u_2)=f_2\Rightarrow L(c_1u_1+c_2u_2)=c_1f_1+c_2f_2$
+
+    4. $u_1,u_2,...u_n: L(u_1)=f_1, L(u_2)=f_2,...,L(u_n)=f_n$
+    
+    $\Rightarrow L(c_1u_1+c_2u_2+...+c_nu_n)=c_1f_1+c_2f_2+...+c_nf_n$
+\end{thm}
+
+
+\subsection{齐次问题：波动方程的行波解}
+\subsubsection{无界问题}
+对于无界的波动方程：
+$$\frac{\partial^2{u}}{\partial{t}^2}-a^2\frac{\partial^2{u}}{\partial{x}^2}=0, -\infty<x<\infty, t>0$$ 
+通解：
+$$\boxed{u(x,t)=f(x-at)+g(x+at)}$$
+若给定初始条件和边界条件$u|_{t=0}=\phi(x),\frac{\partial u}{\partial t}|_{t=0}=\psi(x)$，有
+$$u(x,t)=\frac{1}{2}[\phi(x-at)+\phi(x+at)]+\frac{1}{2a}\int^{x+at}_{x-at}\psi(\xi)d\xi$$
+其中，
+$$\mbox{右行波：}f(x-at)=\frac{1}{2}\phi(x-at)-\frac{1}{2a}\int^{x-at}_{0}\psi(\xi)d\xi$$
+$$\mbox{左行波：}g(x+at)=\frac{1}{2}\phi(x+at)+\frac{1}{2a}\int^{x+at}_{0}\psi(\xi)d\xi$$
+
+\subsubsection{半无界问题}
+$$\left\{
+    \begin{aligned}
+            &\frac{\partial^2{u}}{\partial{t}^2}-a^2\frac{\partial^2{u}}{\partial{x}^2}=0,x>0, t>0\\
+&u|_{x=0}=0,\\
+            &u|_{t=0}=\phi(x),\frac{\partial u}{\partial t}\bigg|_{t=0}=\psi(x)
+    \end{aligned}
+\right.$$
+
+做\textbf{奇延拓}：定义
+$$\Phi=\left\{
+    \begin{aligned}
+        \phi(x),&x>0\\
+        -\phi(-x),&x<0
+    \end{aligned}
+\right.,\quad
+\Psi=\left\{
+        \begin{aligned}
+            \psi(x),&x>0\\
+            -\psi(-x),&x<0
+        \end{aligned}
+\right.$$
+
+$$\begin{aligned}
+    u(x,t)=&\frac{1}{2}[\Phi(x-at)+\Phi(x+at)]+\frac{1}{2a}\int^{x+at}_{x-at}\Psi(\xi)d\xi\\
+    =&\left\{
+    \begin{aligned}
+        \frac{1}{2}[\phi(x-at)+\phi(x+at)]+\frac{1}{2a}\int^{x+at}_{x-at}\psi(\xi)d\xi,\quad&t\le\frac{x}{2}\\
+        \frac{1}{2}[-\phi(at-x)+\phi(x+at)]+\frac{1}{2a}\int^{x+at}_{at-x}\psi(\xi)d\xi,\quad&t>\frac{x}{2}
+    \end{aligned}
+    \right.
+    \end{aligned}$$
+
+\subsection{非齐次方程的齐次化原理}
+\begin{ex}[波动方程（对二阶的PDE齐次化原理）]
+$$      \left\{
+        \begin{aligned}
+                &\frac{\partial^2{u}}{\partial{t}^2}=a^2\frac{\partial^2{u}}{\partial{x}^2}+f(x,t), -\infty<x<\infty, t>0\\
+                &u|_{t=0}=0,\frac{\partial u}{\partial t}\bigg|_{t=0}=0
+        \end{aligned}
+\right.$$
+\begin{rem}
+    若初始条件是$u|_{t=0}=\phi(x),\frac{\partial u}{\partial t}\bigg|_{t=0}=\psi(x)$，只需将问题拆解成(1), (2)两部分求解$u=u_1+u_2$
+    $$      (1)\left\{
+        \begin{aligned}
+                &\frac{\partial^2{u_1}}{\partial{t}^2}=a^2\frac{\partial^2{u_1}}{\partial{x}^2}\\
+                &u_1|_{t=0}=\phi(x),\frac{\partial u_1}{\partial t}\bigg|_{t=0}=\psi(x)
+        \end{aligned}
+\right.\quad (2)\left\{
+        \begin{aligned}
+                &\frac{\partial^2{u_2}}{\partial{t}^2}=a^2\frac{\partial^2{u_2}}{\partial{x}^2}+f\\
+                &u_2|_{t=0}=0,\frac{\partial u_2}{\partial t}\bigg|_{t=0}=0
+        \end{aligned}
+\right.$$
+\end{rem}
+
+\noindent\textbf{Step 1 分割} 
+
+在$[0,t_0]$区间里解方程：将$[0,t_0]$分成$N$份
+$$N\Delta t=t_0$$
+
+$f_n$为脉冲力，仅在小区间内非零
+$$f_1(x,t)+f_2(x,t)+...+f_N(x,t)=f(x,t)$$
+$$      \left\{
+        \begin{aligned}
+                &\frac{\partial^2{u_n}}{\partial{t}^2}-a^2\frac{\partial^2{u_n}}{\partial{x}^2}=f(x,t), -\infty<x<\infty, t>0\\
+                &u_n|_{t=0}=\frac{\partial u_n}{\partial t}\bigg|_{t=0}=0
+        \end{aligned}
+\right.\quad\Rightarrow u(x,t)=u_1(x,t)+...+u_N(x,t)$$
+
+\noindent\textbf{Step 2 求解脉冲力问题} 
+$$\tau=n\Delta t$$
+$$f_n|_{t<\tau-\Delta t}=0 \\\Rightarrow u_n|_{t<\tau-\Delta t}=\frac{\partial u_n}{\partial t}\bigg|_{t=0}=0$$
+
+在小区间内，$f_n$近似为常数：$f_n(x,t)\approx f(x,\tau) t\in[\tau-\Delta t,\tau]$
+
+经过区间$[\tau-\Delta t,\tau]$，外力$f$产生速度$\frac{\partial u_n}{\partial t}\bigg|_{t=\tau}=f(x,t)\Delta t$，位移$u_n|_{t=\tau}\sim(\Delta t)^2$可忽略：
+  $$\frac{\partial^2{u_n(x,t)}}{\partial{t}^2}=f(x,\tau)\Rightarrow\frac{\partial u_n}{\partial t}\bigg|_{t=\tau}-\frac{\partial u_n}{\partial t}\bigg|_{t=\tau-\Delta t}=f(x,\tau)\Delta t$$
+  
+  （$[\tau-\Delta t,\tau]$内，$a^2\frac{\partial^2{u_n}}{\partial{x}^2}\sim(\Delta t)^2$，可忽略）
+$$t>\tau:\left\{
+        \begin{aligned}
+                &\frac{\partial^2{u_n}}{\partial{t}^2}-a^2\frac{\partial^2{u_n}}{\partial{x}^2}=0\\
+                &u_n|_{t=\tau}=0,\frac{\partial u_n}{\partial t}\bigg|_{t=\tau}=f(x,\tau)\Delta t
+        \end{aligned}
+\right.$$
+
+$$\text{定义：}w(x,t;\tau_n)=\frac{u_n(x,t)}{\Delta t}\Rightarrow
+\left\{
+        \begin{aligned}
+                &\frac{\partial^2{w}}{\partial{t}^2}-a^2\frac{\partial^2{w}}{\partial{x}^2}=0\\
+                &w|_{t=\tau}=0,\frac{\partial w}{\partial t}\bigg|_{t=\tau}=f(x,\tau)
+        \end{aligned}
+\right.$$
+\noindent\textbf{Step 3 $\Delta t\rightarrow0$，积分} 
+$$\begin{aligned}
+u(x,t)=&u_1(x,t)+u_2(x,t)+...+u_N(x,t)\\
+=&w(x,t;\tau_1)\Delta t+w(x,t;\tau_2)\Delta t+...+w(x,t;\tau_N)\Delta t\\
+\xlongequal{\Delta t\rightarrow0}&\int_0^t{w(x,t;\tau)dt}
+\end{aligned}$$
+根据行波解：$$w(x,t;\tau)=\frac{1}{2a}\int^{x+a(t-\tau)}_{x-a(t-\tau)}f(\xi,\tau)d\xi$$
+\end{ex}
+
+\begin{mtd}
+$$u(x,t)=\int^t_0{w(x,t;\tau)d\tau}$$
+$$w(x,t;\tau)\text{满足}\left\{
+        \begin{aligned}
+                &\frac{\partial^2{w}}{\partial{t}^2}-a^2\frac{\partial^2{w}}{\partial{x}^2}=0,t>\tau\\
+                &w(x,t;\tau)|_{t=\tau}=0,\frac{\partial w}{\partial t}\bigg|_{t=\tau}=f(x,\tau)
+        \end{aligned}
+\right.$$
+$$w(x,t;\tau)=\frac{1}{2a}\int^{x+a(t-\tau)}_{x-a(t-\tau)}f(\xi,\tau)d\xi$$
+\end{mtd}
+

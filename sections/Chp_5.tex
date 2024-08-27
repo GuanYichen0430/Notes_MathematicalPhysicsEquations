@@ -1,0 +1,122 @@
+\newpage
+\section{Sturm-Liouville 理论}
+\subsection{S-L问题}
+
+\noindent 应对本征值问题的复杂性
+\begin{enumerate}
+    \item S-L理论：直接导出解的性质
+    \item 级数解法
+\end{enumerate}
+
+\begin{dfn}[S-L型方程的一般形式]
+    $$\frac{d}{dx}\left[p(x)\frac{dy(x)}{dx}\right]-q(x)y(x)+\lambda\rho(x)y(x)=0\quad,0<x<b$$
+    引进算符$$L=-\frac{d}{dx}(p(x)\frac{d}{dx})+q(x)$$
+    方程可以写成：$$Ly(x)=\lambda\rho(x)y(x)$$
+    加适当的齐次边界条件
+\end{dfn}
+
+$p(x),q(x),\rho(x)$非常数：非均匀性的体现（材料不均匀/曲线坐标系）
+
+考虑$p(x),q(x),\rho(x)$为实值函数，连续函数
+在开区间$(a,b)$上
+$$\begin{cases}
+p(x)>0\\
+q(x)\ge 0\\
+\rho(x)>0
+\end{cases}$$
+
+\subsection{自伴算符的本征值问题}
+\subsubsection{自伴算符}
+\begin{dfn}[自伴性]
+    $$\langle L f,g\rangle=\langle f,Lg\rangle$$
+    则称$L$具有自伴性
+    $L$的伴算子$L^\dagger$定义为：
+    $$\langle L^\dagger f,g\rangle=\langle f,Lg\rangle$$
+    自伴：$$L^\dagger=L$$
+\begin{rem}
+    函数内积定义$$\langle f,g\rangle=\int_a^bf^*(x)g(x)dx$$
+\end{rem}
+\end{dfn}
+\subsubsection{L算符的自伴性}
+$$(Lf)^*g-f^*(Lg)=\frac{d}{dx}\left[p(x)\left(f^*\frac{dg}{dx}-g\frac{df^*}{dx}\right)\right]$$
+两边积分：
+$$\int_a^b[(Lf)^*g-f^*(Lg)]dx=p(x)\left[f^*\frac{dg}{dx}-g\frac{df^*}{dx}\right]\bigg|_a^b$$
+$$\langle Lf,g\rangle-\langle f,Lg\rangle=\text{边界项}$$
+若边界项$=0\Rightarrow\langle Lf,g\rangle=\langle f,Lg\rangle$，L具有自伴性
+
+自伴性强烈依赖边界条件，只有当边界条件使得边界项$=0$时，$L$具有自伴性
+
+\noindent\textbf{边界项$=0$的几种典型实现方式}
+$$p(x)\left[f^*\frac{dg}{dx}-g\frac{df^*}{dx}\right]\bigg|_a^b=0$$
+\noindent 1. 每个端点(a,b)处，加第一、二、三类边界条件，使两边界各自为零
+
+第一类：$$\begin{cases}
+f(a)=g(a)=0\\
+f(b)=g(b)=0
+\end{cases}$$
+
+第二类：$$\begin{cases}
+f'(a)=g'(a)=0\\
+f'(b)=g'(b)=0
+\end{cases}$$
+
+第三类：$$\begin{cases}
+f'(a)=\alpha f(a),g'(a)=\alpha g(a)\\
+f'(b)=\beta f(b),g'(b)=\beta g(b)
+\end{cases}$$
+
+\noindent 2. 两端点边界项抵消
+$$p(a)=p(b)$$
+
+周期边界条件：$$\begin{cases}
+f(a)=f(b),f'(a)=f'(b)\\
+g(a)=g(b),g'(a)=g'(b)
+\end{cases}$$
+
+\noindent 3. 端点$p(x)=0$，加有界条件
+  $$p(a)=p(b)=0, y(a),y(b),y'(a),y'(b)<\infty$$
+
+\subsubsection{自伴算符的基本性质}
+
+\noindent\textbf{1. 本征值的可数性}：自伴算符的本征值必然存在。本征值有无穷多个，构成可数集
+$$\lambda_1\le\lambda_2\le...\le\lambda_n\le...$$
+$$\lim_{n\rightarrow\infty}\lambda_n=+\infty$$
+
+\noindent\textbf{2. 本征值的实数性}$\lambda=\lambda^*$
+
+\noindent\textbf{3. 本征函数的正交性}：对应不同本征值的本征函数一定正交$$\int_a^b\rho(x)f^*(x)g(x)dx=0$$
+
+\noindent\textbf{4. 本征值的非负性}$\lambda\ge0$
+
+若$\rho(a)f^*(a)f'(a)-\rho(b)f^*(b)f'(b)\ge0$，则$\lambda\ge0$
+
+第一、二类边界条件显然满足
+
+第三类边界条件
+$$\begin{cases}
+\alpha_1f(a)+\beta_1f'(a)=0 &\Rightarrow f'(a)=-\frac{\alpha_1}{\beta_1}f(a)\\
+\alpha_2f(b)+\beta_2f'(b)=0 &\Rightarrow f'(b)=-\frac{\alpha_2}{\beta_2}f(b)
+\end{cases}$$
+$$\alpha_1\beta_1<0,\alpha_2\beta_2>0\Rightarrow\lambda\ge0$$
+
+排除非物理情形，第三类边界条件也有$\lambda\ge0$
+
+\noindent\textbf{5. 完备性}
+
+自伴算符的本征函数（的全体）构成一个完备的函数组，即任意一个在区间$[a,b]$中有连续二阶导数、且满足和自伴算符$L$相同的边界条件的函数$f(x)$，均可按本征函数$\{y_n(x)\}$展开为绝对而且一致收敛的级数。
+$$f(x)=\sum_{n=1}^\infty C_nX_n(x)$$
+$$C_n=\frac{\int_a^b\rho(x)X_n^*f(x)}{||X_n||^2}=\frac{\int_a^b\rho(x)X_n^*f(x)}{\int_a^b\rho(x)|X_n(x)|^2dx}$$
+$$||X_n||^2=\int_a^b\rho(x)|X_n(x)|^2dx$$
+
+\subsection{S-L型方程的本征值问题}
+将方程化为S-L方程的标准形式
+$$\frac{d}{dx}\left[p(x)\frac{dy(x)}{dx}\right]-q(x)y(x)+\lambda\rho(x)y(x)=0$$
+
+一般方程：
+$$y''(x)+a(x)y'(x)+b(x)y(x)+\lambda c(x)y(x)=0$$
+$$e^{\int^x a(x')dx'}[y''+ay'+by+\lambda cy]=0$$
+$$\frac{d}{dx}[e^{\int^x a(x')dx'}\frac{dy}{dx}]+b(x)e^{\int^x a(x')dx'}y+\lambda c(x)e^{\int^x a(x')dx'}y=0$$
+$$p(x)=e^{\int^x a(x')dx'}$$
+$$q(x)=-b(x)e^{\int^x a(x')dx'}$$
+$$\rho(x)=c(x)e^{\int^x a(x')dx'}$$
+

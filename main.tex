@@ -1,0 +1,60 @@
+\documentclass[11pt, twoside]{article}	% Always compile at least twice.
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+
+% Cover Information
+\def\univname{Tsinghua University}
+%\def\coursenum{MAT 999}
+\def\coursename{数学物理方程}
+\def\professor{Wang Zhong}
+\def\student{Guan Yichen}
+\def\semesteryear{24 Spring}
+%\def\imagename{example-qimage-a}		    % Replace with University Seal
+%\def\scalesize{0.50}					% Scale Logo Size 
+
+% Style Package (Load After Cover Information)
+\usepackage{style}	% Change to match style file
+
+
+% -------------------
+% Content
+% -------------------
+\begin{document}
+
+
+% Cover Page
+\coverpage
+\newpage
+
+% % Last Updated
+% \updated{\today}
+
+% Table of Contents
+\thispagestyle{empty}
+\tableofcontents
+\newpage
+\pagestyle{fancy}
+\setcounter{section}{-1}
+\setcounter{page}{1}
+
+% Sections
+\input{sections/Chp_0.tex}
+\input{sections/Chp_1.tex}
+\input{sections/Chp_2.tex}
+\input{sections/Chp_3.tex}
+\input{sections/Chp_4.tex}
+\input{sections/Chp_5.tex}
+\input{sections/Chp_6.tex}
+\input{sections/Chp_7.tex}
+\input{sections/Chp_8.tex}
+\input{sections/Chp_9.tex}
+\input{sections/Chp_10.tex}
+\input{sections/Chp_11.tex}
+\input{sections/Appendix.tex}
+
+% % Bibliography
+% \newpage
+% \nocite{*}
+% \printbibliography[heading=bibintoc]
+
+
+\end{document}

@@ -1,0 +1,56 @@
+\newpage
+\section{数学基础}
+\subsection{二阶常系数常微分方程}
+针对二阶线性齐次方程$f(x)''+a_1f(x)'+a_2f(x)=0$，
+特征方程为$\lambda^2+a_1\lambda+a_2=0$，$\Delta=a_1^2-4a_2$
+$\lambda_1,\lambda_2$为特征方程的两根$(\lambda_{1,2}=\alpha\pm i\beta)$，其通解为：
+$$\begin{aligned}
+    &\mbox{两实根：}\Delta>0        &&f=c_1e^{\lambda_1x}+c_2e^{\lambda_2x}\\
+    &\mbox{重根：}\Delta=0          &&f=(c_1+c_2x)e^{\lambda_1x}\\
+    &\mbox{两共轭复实根：}\Delta<0    &&f=(c_1\cos{\beta x}+c_2\sin{\beta x})e^{\alpha x}
+\end{aligned}$$
+
+\subsection{傅里叶级数}
+\subsubsection{三角函数的正交性}
+\begin{enumerate}
+    \item 正弦函数的半周期正交性：
+    
+    在$[0,\pi]$区间内，不同频率的正弦函数$\sin⁡(nx)$和$\sin⁡(mx)$是正交的，除非$n=m$.
+        $$\int_0^\pi\sin⁡(nx)\cdot\sin⁡(mx) dx=0$$
+    \item 余弦函数的半周期正交性：
+    
+    在$[0,\pi]$区间内，不同频率的余弦函数$\cos⁡(nx)$和$\cos⁡(mx)$是正交的，除非$n=m$.
+        $$\int_0^\pi\cos(nx)\cdot\cos(mx) dx=0$$
+    \item 正弦和余弦的正交性：
+      
+    在一个完整周期$[0,2\pi]$上，正弦函数$\sin⁡(nx)$和余弦函数$\cos⁡(mx)$是正交的，除非$n=m=0$.
+      $$\int_0^{2\pi}\sin(nx)\cdot\cos(mx) dx=0$$
+\end{enumerate}
+
+\subsubsection{傅立叶级数}
+
+傅立叶正弦级数
+$$[0,l]\quad f(x)=\sum_{n=1}^\infty C_n\sin{\frac{n\pi x}{l}}$$
+$$C_n=\left\{
+\begin{array}{lc}
+\frac{1}{l}\int_0^lf(x)dx &n=0\\
+\frac{2}{l}\int_0^lf(x)\cos\dfrac{n\pi x}{l}dx &n\ge1\\
+\end{array}
+\right.$$
+
+傅立叶余弦级数
+$$[0,l]\quad f(x)=\sum_{n=1}^\infty C_n\cos{\frac{n\pi x}{l}}$$
+$$C_n=\left\{
+\begin{array}{lc}
+\frac{1}{l}\int_0^lf(x)dx &n=0\\
+\frac{2}{l}\int_0^lf(x)\sin\dfrac{n\pi x}{l}dx &n\ge1\\
+\end{array}
+\right.$$
+
+傅里叶级数
+$$[-l,l]\quad f(x)=a_0+\sum_{n=1}^\infty a_n\cos{\frac{n\pi x}{l}}+b_n\sin{\frac{n\pi x}{l}}$$
+$$\begin{aligned}
+    a_0=&\frac{1}{2l}\int_{-l}^lf(x)dx\\
+    a_n=&\frac{1}{l}\int_{-l}^lf(x)\cos\frac{n\pi x}{l}dx\\
+    b_n=&\frac{1}{l}\int_{-l}^lf(x)\sin\frac{n\pi x}{l}dx\\
+\end{aligned}$$

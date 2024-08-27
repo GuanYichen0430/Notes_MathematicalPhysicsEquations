@@ -1,0 +1,378 @@
+% !TEX root = ../mat999.tex
+\newpage
+\section{二阶线性常微分方程的幂级数解法}
+\subsection{幂级数}
+\begin{dfn}[幂级数是通项为幂函数的函数项级数]
+幂级数是通项为幂函数的函数项级数
+$$\sum_{n=0}^\infty c_n(z-a)^n=c_0+c_1(z-a)+c_2(z-a)^2+...+c_n(z-n)^a+...$$
+\end{dfn}
+\subsubsection{函数的幂级数展开}
+设$f(x)$在$x_0$的邻域内任意阶可导，则
+$$f(x)=\sum_{n=0}^\infty a_n(x-x_0)^n$$
+其中，
+$$a_n=\frac{f^{(n)}(x_0)}{n!}\quad(n=0,1,2,...)$$
+
+常见函数在$x=0$处的幂级数
+$$\begin{aligned}
+e^x=&\sum_{n=0}^\infty\frac{x^n}{n!}\\
+\sin x=&\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{(2n+1)!}\\
+\cos x=&\sum_{n=0}^\infty\frac{(-1)^nx^{2n}}{(2n)!}\\
+\frac{1}{1-x}=&\sum_{n=0}^\infty x^n\quad(-1<x<1)\\
+\frac{1}{1+x}=&\sum_{n=0}^\infty(-1)^nx^n\quad(-1<x<1)\\
+\ln(1+x)=&\sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n}\quad(-1<x\le1)\\
+-\ln(1-x)=&\sum_{n=1}^\infty\frac{x^n}{n}\quad(-1\le x<1)
+\end{aligned}$$
+
+\subsubsection{幂级数的收敛半径}
+在幂级数的收敛点与发散点之间存在一个分界线，
+而且这个分界线一定是圆周. 圆内区域称为幂级数的收敛圆. 收敛圆的半径称为收敛半径. 
+作为特殊情况，收敛半径可以是$0$(收敛圆退化为一个点.除$z=a$点外，幂级数在全平面处处发散)，
+也可以是$\infty$(收敛圆就是全平面. 幂级数在全平面收敛，但在$\infty$点肯定发散，除非此幂级数只有常数项一项).
+\begin{thm}[达朗贝尔判别法]\label{dAlembert}
+    对于级数$u_0+u_1+u_2+...$，
+    $$\lim_{k\rightarrow\infty}\bigg|\frac{u_{k+1}}{u_k}\bigg|=
+    \begin{cases}
+    >1 \mbox{发散}\\
+    <1 \mbox{收敛}\\
+    =1 \mbox{无法判别}
+    \end{cases}$$
+幂级数$\sum_{n=0}^\infty c_n(z-a)^n$的收敛半径为
+$$R=\lim_{n\rightarrow\infty}\bigg|\frac{c_n}{c_{n+1}}\bigg|$$
+\end{thm}
+    
+\begin{thm}[高斯判别法]\label{Gauss}
+对于正项级数
+$$\sum_{k=0}^\infty u_k\quad ,(u_k>0)$$
+若$\lim_{k\rightarrow\infty}\frac{u_{k}}{u_{k+1}}$可以写成
+$$\lim_{k\rightarrow\infty}\frac{u_{k}}{u_{k+1}}=1+\frac{\mu}{k}+\frac{\theta_k}{k^2}\quad(k\rightarrow\infty,|\theta_k|<\infty)$$
+可以根据$\mu$的大小判断收敛性
+$$\mu\begin{cases}
+>1 \mbox{收敛}\\
+\le1 \mbox{发散}\\
+\end{cases}$$
+（$\mu=1$的情况：调和级数$\sum_{k=1}^{\infty}\frac{1}{k}$，发散）
+\end{thm}
+
+\subsection{二阶线性常微分方程的常点和奇点}
+二阶线性齐次常微分方程的标准形式：
+$$y''(x)+p(x)y'(x)+q(x)y(x)=0$$
+
+根据$p(x),q(x)$在$x_0$附近的行为分类：
+
+1. $x_0$为常点：$p(x),q(x)$在$x_0$点解析（$p(x_0),q(x_0)<\infty$）
+  $$p(x)=\sum_{k=0}^\infty A_k(x-x_0)^k$$
+  $$q(x)=\sum_{k=0}^\infty B_k(x-x_0)^k$$
+
+2. $x_0$为奇点：$p(x)$或$q(x)$在$x_0$点不解析
+
+- 正则奇点：$x\rightarrow x_0: (x-x_0)p(x)<\infty,(x-x_0)^2q(x)<\infty$
+  $$(x-x_0)p(x)=\sum_{k=0}^\infty A_k(x-x_0)^k$$
+  $$(x-x_0)^2q(x)=\sum_{k=0}^\infty B_k(x-x_0)^k$$
+
+- 非正则奇点$x\rightarrow x_0: (x-x_0)p(x)\rightarrow\infty$或$(x-x_0)^2q(x)\rightarrow\infty$
+
+
+\subsection{方程常点邻域内的解}
+\begin{thm}\label{ordinary}
+    若$p(x),q(x)$在$x_0$的邻域$|x-x_0|<R$内解析，则$y''(x)+p(x)y'(x)+q(x)y(x)=0$，$y(x_0)=C_0,y'(x_0)=C_1$在$|x-x_0|<R$内有唯一解，且解具有解析性
+    $$y(x)=\sum_{k=0}^\infty a_k(x-x_0)^k$$
+\end{thm}
+
+
+
+\begin{ex}[Legendre方程的本征值问题]\label{LegendreEigenValue}
+\nameref{LegendreFunction}：$(1-x^2)y''-2xy'+\lambda y=0$
+$$y''-\frac{2x}{1-x^2}y'+\frac{\lambda}{1-x^2} y=0$$
+
+$x=0$为常点，$x=\pm1$是奇点
+
+在$x=0$附近求解级数
+$$\begin{aligned}
+y(x)=&\sum_{k=0}^{\infty}a_kx^k=a_0+a_1x+a_2x^2+...\\
+y'(x)=&\sum_{k=0}^{\infty}(k+1)a_{k+1}x^{k}=a_1+2a_2x+3a_3x^2+...\\
+y''(x)=&\sum_{k=0}^{\infty}(k+1)(k+2)a_{k+2}x^{k}=2\cdot1a_2+3\cdot2a_3x+4\cdot3a_4x^2+...\\
+-x^2y''=&-\sum_{k=2}^{\infty}k(k-1)a_{k}x^{k}=-2\cdot1a_2x^2-3\cdot2a_3x^3-4\cdot3a_4x^4-...\\
+-2xy'=&-2\sum_{k=1}^{\infty}ka_{k}x^{k}=-2a_1x-2\cdot2a_2x^2-2\cdot3a_3x^3+...\\
+\lambda y=&\lambda\sum_{k=0}^{\infty}a_kx^k=\lambda a_0+\lambda a_1x+\lambda a_2x^2+...
+\end{aligned}$$
+
+代入原方程：
+$$\begin{aligned}
+&(1-x^2)y''-2xy'+\lambda y\\
+=&(2a_2+\lambda a_0)+[6a_3+(\lambda-2)a_1]x+\\
+&\sum_{k=2}^\infty\{(k+2)(k+1)a_{k+2}+[\lambda-k(k+1)]a_k\}x^k=0
+\end{aligned}$$
+
+递推关系：$(k+2)(k+1)a_{k+2}+[\lambda-k(k+1)]a_k=0\quad k\ge0$
+$$\begin{aligned}
+a_{k+2}=&\frac{k(k+1)-\lambda}{(k+1)(k+2)}a_k\\
+a_{2n}=&\prod_{j=1}^n\frac{(2j-1)(2j-2)-\lambda}{2j(2j-1)}a_0\\
+a_{2n+1}=&\prod_{j=1}^n\frac{2j(2j-1)-\lambda}{2j(2j+1)}a_1
+\end{aligned}$$
+
+得到方程的级数解：
+$$\begin{aligned}
+y(x)=&(a_0+a_2x^2+...)+(a_1x+a_3x^3+...)=a_0y_0(x)+a_1y_1(x)\\
+y_0(x)=&1+\sum_{n=1}^\infty\prod_{j=1}^n\frac{(2j-1)(2j-2)-\lambda}{2j(2j-1)}x^{2n}\\
+y_1(x)=&x+\sum_{n=1}^\infty\prod_{j=1}^n\frac{2j(2j-1)-\lambda}{2j(2j+1)}x^{2n+1}
+\end{aligned}$$
+
+计算$a_0y_0(x)=a_0+a_2x^2+a_4x^4+...$的收敛区间：
+
+利用达朗贝尔判别法~\ref{dAlembert}，相邻项比为
+$$\lim_{k\rightarrow\infty}\bigg|\frac{a_{2n+2}x^{2n+2}}{a_{2n}x^{2n}}\bigg|=\lim_{k\rightarrow\infty}|x^2|\frac{2n(2n+1)-\lambda}{(2n+2)(2n+1)}=\lim_{k\rightarrow\infty}|x^2|$$
+$$\begin{cases}
+|x^2|>1 \mbox{发散}\\
+|x^2|<1 \mbox{收敛}\\
+|x^2|=1 \mbox{无法判别}
+\end{cases}$$
+对于$|x|=1$的情况使用高斯判别法~\ref{Gauss}
+
+$x=1$时：
+$$\begin{aligned}
+&\frac{a_{2n}x^{2n}}{a_{2n+2}x^{2n+2}}=\frac{a_{2n}}{a_{2n+2}}=\frac{(2n+2)(2n+1)}{2n(2n+1)-\lambda}\\\stackrel{n\rightarrow\infty}{\longrightarrow}&\frac{(2n+2)(2n+1)}{2n(2n+1)}\frac{1}{1-\frac{\lambda}{2n(2n+1)}}\\
+=&(1+\frac{1}{n})\left[1+\frac{\lambda}{2n(2n+1)}+\left(\frac{\lambda}{2n(2n+1)}\right)^2+...\right]\\
+=&1+\frac{1}{n}+\frac{\theta_n}{n^2}\quad(|\theta_n|<\infty)\\
+>&1\quad\mbox{发散}
+\end{aligned}$$
+和$y(\pm1)<\infty$矛盾。出路：级数退化为多项式
+
+$$\begin{aligned}
+a_{k+2}=&\frac{k(k+1)-\lambda}{(k+1)(k+2)}a_k,\quad\lambda=l(l+1),l=0,1,2,...\\
+a_{l+2}=&\frac{l(l+1)-l(l+1)}{(l+1)(l+2)}a_l=0\Rightarrow a_{l+4}=a_{l+6}=0\mbox{从}l+4\mbox{项开始退化}
+\end{aligned}$$
+$$\begin{cases}
+l\mbox{为偶：}y_0(x)=a_0+a_2x^2+...+a_lx^l&\mbox{退化}\\
+l\mbox{为奇：}y_1(x)=a_1x+a_3x^3+...+a_lx^l&\mbox{退化}
+\end{cases}$$
+
+Legendre方程在$y(\pm1)$有界这一边界条件下：
+
+本征值$\lambda_l=l(l+1)$
+
+本征函数为$P_l(x),l=0,1,2,...$
+
+$$P_l(x)=\begin{cases}
+    y_0(x)/y_0(1) &l\mbox{为偶，偶函数}\\
+    y_1(x)/y_1(1) &l\mbox{为奇，奇函数}
+\end{cases}$$
+$$\begin{aligned}
+    P_0(x)=&1\\
+    P_1(x)=&x\\
+    P_2(x)=&\frac{1}{2}(3x^2-1)\\
+    P_3(x)=&\frac{1}{2}(5x^3-3x)\\
+    P_4(x)=&\frac{1}{8}(35x^4-30x^2+3)\\
+    P_5(x)=&\frac{1}{8}(63x^5-70x^3+15x)
+\end{aligned}$$
+\end{ex}
+
+\subsection{方程正则奇点领域内的解}
+\begin{thm}[Fuchs定理]\label{Fuchs}
+    广义幂级数解(Frobenius方法)
+    $$y''(x)+p(x)y'(x)+q(x)y(x)=0$$
+    在正则奇点$x_0$的去心邻域$0<|x-x_0|<R$内，有两个线性无关解：
+$$\begin{aligned}
+    y_1(x)&=(x-x_0)^{\rho_1}\sum_{k=0}^\infty c_k(x-x_0)^k\quad c_0\ne0\\
+    y_2(x)&=gy_1(x)ln(x-x_0)+(x-x_0)^{p_2}\sum_{k=0}^\infty d_k(x-x_0)^k\quad,g\mbox{或}d_0\ne0
+\end{aligned}$$
+\end{thm}
+
+\begin{nex}[一般正则奇点解法：对系数进行幂级数展开]
+    $$\begin{aligned}
+        &y''+p(x)y'+q(x)y=0\Rightarrow x^2y''+x[xp(x)]y'+x^2q(x)y=0\\
+        &xp(x)=A_0+A_1x+A_2x^2+...\\
+        &x^2q(x)=B_0+B_1x+B_2x^2+...
+    \end{aligned}$$
+    设解取以下形式（由欧拉方程启发）
+    $$y=\sum_{k=0}^\infty a_kx^{k+f}(a_0\ne0)$$
+    得到一阶导和二阶导
+    $$\begin{aligned}
+        y'=&\sum_{k=0}^\infty a_k(k+f)x^{k+f-1}\\
+        y''=&\sum_{k=0}^\infty a_k(k+f)(k+f-1)x^{k+f-2}
+    \end{aligned}$$
+    定义$L[y]=x^2y''+x(A_0+A_1x+...)y'+(B_0+B_1x+...)y=0$
+    ，代入级数解：
+    $$\begin{aligned}
+        &L[y]=L\left[\sum_{k=0}^\infty a_kx^{k+f}(a_0\ne0)\right]\\
+        =&x^\rho\left[\sum_{k=0}^\infty(k+\rho)(k+\rho+1)a_kx^k+\left(\sum_{k=0}^\infty A_mx^m\right)\left(\sum_{k=0}^\infty (k+\rho)a_kx^k\right)+\left(\sum_{k=0}^\infty B_mx^m\right)\left(\sum_{k=0}^\infty a_kx^k\right)\right]\\
+        \equiv&a_0f_0(\rho)x^\rho+\sum_{k=1}^\infty F_kx^{k+\rho}
+    \end{aligned}$$
+    其中，
+    $$\begin{aligned}
+        f_0(\rho)\equiv&\rho(\rho-1)+A_0\rho+B_0\\
+        F_k(\rho)\equiv&[(k+\rho)(k+\rho-1)+A_0(k+\rho)+B_0]a_k+\sum_{k=1}^\infty[(m+\rho)A_{k-m}+B_{k-m}]a_m\\
+        =&f_0(\rho+k)a_k+\sum_{k=1}^\infty[(m+\rho)A_{k-m}+B_{k-m}]a_m
+    \end{aligned}$$
+    上式每项为零，需要
+
+
+    \begin{enumerate}
+        \item $\rho$满足指标方程$f_0(\rho)=0$
+        \item $\{a_k\}$满足递推关系：$F_k=0(k\ge1)$
+    \end{enumerate}
+    
+    可以得到广义幂级数解（系数由递推关系确定）
+    $$y=\sum_{k=0}^\infty a_kx^{k+\rho}$$
+\end{nex}
+\begin{mtd}[第一解的求法]$$$$
+    \begin{enumerate}
+        \item 将解写成广义幂级数形式$y(x)=\sum_{k=0}^\infty a_kx^{k+\rho}$
+        \item 计算常微分方程的每一项，相同次数对齐书写
+        \item 代入常微分方程相加，每项系数都为零
+        \item $x^\rho$项对应系数为指标方程，得到两个指标根$\rho_1$和$\rho_2$，根据$\rho_1-\rho_2$情况分类讨论第二解解法
+        \item 令求和项系数$F_k=0$，得到递推关系
+        \item 如果求和项前面有两项，第二项可以判断奇/偶数项首项是否为零；
+        如果只有一项，可以任取$a_0$。
+        一般取$a_0=1$，Bessel函数取$a_0=\frac{1}{2^\nu\Gamma(\nu+1)}$
+    \end{enumerate}
+
+\end{mtd}
+\subsubsection{$\rho_1-\rho_2\ne$整数}
+方程的两个线性无关解为
+$$y_1=\sum_{k=0}^\infty a_k(\rho_1)x^{k+\rho_1},y_2=\sum_{k=0}^\infty a_k(\rho_2)x^{k+\rho_2}$$
+\subsubsection{$\rho_1=\rho_2$}
+第一解：
+$$y_1=\sum_{k=0}^\infty a_kx^{k+\rho_1}$$
+
+第二解：$$y_2=\frac{\partial y(x;p)}{\partial\rho}\bigg|_{\rho=\rho_1}=gy_1(x)\ln x+\sum_{k=0}^\infty\left(\frac{\partial a_k}{\partial\rho}\right)_{\rho=\rho_1}x^{k+\rho_1}$$
+取$y(x;p)=\sum_{k=0}^\infty a_kx^{k+\rho}$满足递推关系$F_k=0$
+$$L[y(x;p)]=a_0f_0(p)x^\rho=a_0(\rho-\rho_1)(\rho-\rho_2)x^\rho=a_0(\rho-\rho_1)^2x^\rho$$
+对$\rho$求导得
+$$\begin{aligned}
+&\frac{\partial}{\partial\rho}L[y(x;p)]=L\left[\frac{\partial y}{\partial\rho}\right]=\frac{\partial}{\partial\rho}[a_0(\rho-\rho_1)^2x^\rho]\\
+=&2a_0(\rho-\rho_1)x^\rho+a_0(\rho-\rho_1)^2x^\rho\ln x=0
+\end{aligned}$$
+
+$$\Rightarrow L\left[\frac{\partial y}{\partial\rho}\bigg|_{\rho=\rho_1}\right]=0$$
+，即第二解为$$\boxed{\frac{\partial y(x;p)}{\partial\rho}\bigg|_{\rho=\rho_1}}$$
+$$\begin{aligned}
+ &y(x;p)=\sum_{k=0}^\infty a_kx^{k+\rho} \\
+ \Rightarrow&y_2(x)=\frac{\partial y(x;p)}{\partial\rho}\bigg|_{\rho=\rho_1}\\
+=&\sum_{k=0}^\infty\left(a_kx^{k+\rho}\ln x+\frac{\partial a_k}{\partial\rho}x^{k+\rho}\right)_{\rho=\rho_1}\\
+=&y_1(x)\ln x+\sum_{k=0}^\infty\left(\frac{\partial a_k}{\partial\rho}\right)_{\rho=\rho_1}x^{k+\rho_1}
+\end{aligned}$$
+$g\ne0$，为常数
+
+\begin{ex}
+    在$x=0$附近求解$xy''+y'-4y=0$
+    $$y(x)=\sum_{k=0}^\infty a_kx^{\rho+k}$$
+    代入$xy''+y'-4y=0$：
+    $$\begin{aligned}
+    x^2y''&=\rho(\rho-1)a_0x^\rho+(\rho+1)\rho a_1x^{\rho+1}+...+(\rho+k)(\rho+k-1)a_kx^{\rho+k}+...\\
+    xy'&=\rho a_0x^\rho+(\rho+1)a_1x^{\rho+1}+...+(\rho+k)a_kx^{\rho+k}+...\\
+    -4xy&=-4a_0x^{\rho+1}-...-4a_{k-1}x^{\rho+k}-...
+    \end{aligned}$$
+    指标方程$f_0(\rho)=\rho(\rho-1)+\rho=\rho^2\Rightarrow\rho_1=\rho_2=0$
+    $$F_k=0\Rightarrow a_k=\frac{4}{(\rho+k)^2}a_{k-1}=\frac{4^k}{(\rho+1)^2...(\rho+k)^2}a_0$$
+    取$\rho=\rho_1=0$，得
+    $$\begin{aligned}
+        y_1(x)&=1+\sum_{k=1}^\infty\frac{4^k}{(k!)^2}x^k\quad(a_0=1)\\
+        y_2(x)&=\frac{\partial y(x;p)}{\partial\rho}\bigg|_{\rho=\rho_1}=\frac{\partial}{\partial\rho}\left(\sum_{k=0}^\infty a_kx^{\rho+k}\right)_{\rho=0}\\
+    &=\sum_{k=0}^\infty\left(a_kx^{k+\rho}\ln x+\frac{\partial a_k}{\partial\rho}x^{k+\rho}\right)_{\rho=0}\\
+    &=y_1(x)\ln x-2\sum_{k=1}^\infty\frac{4^k}{(\rho+1)^2...(\rho+k)^2}\left(\frac{1}{\rho+1}+...+\frac{1}{\rho+k}\right)x^{\rho+k}\bigg|_{\rho=0}\\&=y_1(x)\ln x-2\sum_{k=1}^\infty\frac{4^kH_k}{(k!)^2}x^k\quad \left(H_k=1+\frac{1}{2}+...+\frac{1}{k}\right)
+    \end{aligned}$$
+\end{ex}
+\subsubsection{$\rho_1-\rho_2=$整数}
+表面看来和$\rho_1-\rho_2\ne$整数时并无不同，实则不然
+
+第一解：$$y_1=\sum_{k=0}^\infty a_kx^{k+\rho_1}$$
+
+第二解：$g=0$或$g\ne0$
+当求$y_2=\sum_{k=0}^\infty a_k(\rho_2)x^{k+\rho_2}$时，递推关系$F_n=0$出现意外：
+$$
+f_0(\rho_2+n)a_n=(...)a_{n-1}+(...)a_{n-2}+...+(...)a_0=(......)a_0
+$$
+而$\rho_1=rho_2+n$是指标方程之根，即$f_0(\rho_2+n)=0$
+
+\begin{enumerate}
+    \item 若$a_0$系数$=0$，则$a_n$任意，$y_2(x)$含$a_0,a_n$两个任意常数，是方程的通解
+    \item 若$a_0$系数$\ne0$，则递推关系无法满足，无$y_2=\sum_{k=0}^\infty a_k(\rho_2)x^{k+\rho_2}$形式的解。第二解需要另行求出，含对数项。
+\end{enumerate}
+
+\subsection{贝塞尔方程的解}
+\label{Bessel}
+\begin{dfn}[Gamma函数]
+    $$\boxed{\Gamma(n+1)\equiv n!\quad,n=0,1,2,...}$$
+    
+    \noindent 将定义域拓宽到实数域：
+
+    保持递推关系：$\boxed{\Gamma(x+1)=x\Gamma(x)}$
+
+    $$\begin{cases}
+    x>0,\quad&\Gamma(x)=\int_0^\infty e^{-t}t^{x-1}dt\\
+    x<0,\quad&\Gamma(x)\mbox{由}\Gamma(x+1)=x\Gamma(x)\mbox{定义}
+    \end{cases}$$
+
+    \noindent \textbf{性质：}
+    $$\Gamma(x)\Gamma(1-x)=\frac{\pi}{\sin\pi x}$$
+    \end{dfn}
+
+\begin{dfn}[Bessel方程]
+    $x^2y''+xy'+(x^2-\nu^2)y=0$
+\end{dfn}
+    $$y''+\frac{1}{x}y'+(1-\frac{\nu^2}{x^2})y=0$$
+    $xp(x)<\infty,x^2g(x)<\infty\Rightarrow x=0$为正则奇点
+
+    取
+    $$y(x)=\sum_{k=0}^\infty a_kx^{\rho+k}=a_0x^\rho+a_1x^{\rho+1}+...(a_0\ne0)$$
+    代入方程得
+    $$\begin{aligned}
+    &x^2y''+xy'+(x^2-\nu^2)y\\
+    =&a_0(\rho^2-\nu^2)x^\rho+[(\rho+1)^2-\nu^2]a_1x^{\rho+1}+\sum_{k=2}^\infty\{[(\rho+k)^2-\nu^2]a_k+a_{k-2}\}\\
+    \equiv&a_0f_0(\rho)x^\rho+\sum_{k=1}^\infty F_k(\rho)x^{\rho+k} 
+    \end{aligned}$$
+    指标方程
+    $$f_0(\rho)=\rho^2-\nu^2=0,\quad\rho_1=\nu,\rho_2=-\nu$$
+    $$a_1[(\rho+1)^2-\nu^2]=(\rho+1+\nu)(\rho+1-\nu)a_1=0\Rightarrow a_1=0$$
+    先考虑$\rho=\rho_1=\nu$
+    $$\begin{aligned}
+    a_k=&-\frac{1}{(\rho+k)^2-\nu^2}a_{k-2}(k\ge2)\\
+    =&-\frac{1}{k(2\nu+k)}a_{k-2}\\
+    \end{aligned}$$
+    由于$a_1=0$，所有奇数项为零;偶数项：
+    $$\begin{aligned}
+    a_{2n}=&-\frac{1}{2n(2\nu+2n)}a_{2n-2}=-\frac{1}{4}\frac{1}{n(\nu+n)}a_{2n-2}\\
+    =&(-1)^n\frac{1}{2^{2n}}\frac{1}{n!(\nu+n)(\nu+n-1)...(\nu+1)}a_0
+    \end{aligned}$$
+    得到第一个级数解：
+    $$\begin{aligned}
+    y_1(x)=&a_0x^\nu[1-\frac{1}{\nu+1}\left(\frac{x}{2}\right)^2+\frac{1}{2!}\frac{1}{(\nu+1)(\nu+2)}\left(\frac{x}{2}\right)^4+...
+    \\&+(-1)^n\frac{1}{n!}\frac{1}{(\nu+1)...(\nu+n)}\left(\frac{x}{2}\right)^{2n}+...]
+    \end{aligned}$$
+    根据达朗贝尔判别法，
+    $$\lim\frac{a_kx^k}{a_{k-2}x^{k-2}}=x^2\lim_{k\rightarrow\infty}\left[-\frac{1}{k(2\nu+k)}\right]=0$$
+    得收敛半径$R=\infty$
+
+    习惯取$$a_0=\frac{1}{2^\nu\Gamma(\nu+1)}$$
+
+    可以化简$a_{2n}$的形式为：
+    $$\begin{aligned}
+    \Rightarrow a_{2n}=&(-1)^n\frac{1}{2^{2n}}\frac{1}{n!(\nu+n)(\nu+n-1)...(\nu+1)}\frac{1}{2^\nu\Gamma(\nu+1)}\\
+    =&(-1)^n\frac{1}{2^{2n+\nu}}\frac{1}{n!(\nu+n)(\nu+n-1)...(\nu+2)\Gamma(\nu+2)}\\
+    =&...\\
+    =&(-1)^n\frac{1}{2^{2n+\nu}}\frac{1}{n!\Gamma(\nu+n+1)}
+    \end{aligned}$$
+    $y_1(x)$为$\nu$阶Bessel函数.
+    $$y_1(x)=\sum_{n=0}^\infty(-1)^n\frac{1}{n!\Gamma(\nu+n+1)}\left(\frac{x}{2}\right)^{2n+\nu}\equiv J_\nu(x)$$
+
+\subsubsection{$\nu\ne$整数：第一类贝塞尔函数}
+    $$k(2\nu-k)a_k=a_{k-2}$$
+    可以看到此时当$k$为偶数时，$k(2\nu-k)\ne0$
+
+    同理，取$\rho=\rho_2=-\nu$
+    $$\begin{aligned}
+    y_2(x)=&b_0x^{-\nu}[1-\frac{1}{-\nu+1}\left(\frac{x}{2}\right)^2+\frac{1}{2!}\frac{1}{(-\nu+1)(-\nu+2)}\left(\frac{x}{2}\right)^4+...
+    \\&+(-1)^n\frac{1}{n!}\frac{1}{(-\nu+1)...(-\nu+n)}\left(\frac{x}{2}\right)^{2n}+...]
+    \end{aligned}$$
+    取$$b_0=\frac{1}{2^{-\nu}\Gamma(-\nu+1)}=\frac{2^\nu}{\Gamma(-\nu+1)}$$
+    $y_2(x)$为$-\nu$阶Bessel函数.
+    $$y_2(x)=\sum_{n=0}^\infty(-1)^n\frac{1}{n!\Gamma(-\nu+n+1)}\left(\frac{x}{2}\right)^{2n-\nu}\equiv J_{-\nu}(x)$$
+    通解：$$y(x)=C_1J_\nu(x)+C_2J_{-\nu}(x)$$
+
+
+\subsubsection{$\nu=0$}
+见\nameref{cylindrical}一章
+
+
+
+

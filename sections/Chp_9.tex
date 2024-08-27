@@ -1,0 +1,246 @@
+\newpage
+\section{二阶偏微分方程的分类和通解}
+\subsection{二阶偏微分方程的分类}
+
+$$\begin{aligned}
+    &\text{典型的二阶PDE}&&\text{二次曲线}\\
+    \text{波动方程 }\quad&\frac{\partial u}{\partial t^{2}}-a^{2}\frac{\partial^{2}u}{\partial x^{2}}=0&&\frac{x^{2}}{a^{2}}-\frac{y^{2}}{b^{2}}=1\\
+    \text{热传导}\quad&\frac{\partial u}{\partial t}-k\frac{\partial^{2}u}{\partial x^{2}}=0&&y=x^{2}\\
+    \text{Laplace}\quad&\frac{\partial^{2}y}{\partial x^{2}}+\frac{\partial^{2}y}{\partial y^{2}}=0&&\frac{x^{2}}{a^{2}}+\frac{y^{2}}{b^{2}}=1
+\end{aligned}$$
+
+\noindent\textbf{二次曲线的分类：}$ax^2+2bxy+cy^2+dx+ey+f=0$
+$$\Rightarrow a(x+\frac{b}{a}y)^{2}+(c-\frac{b^{2}}{a})y^{2}+dx+ey+f=0$$
+
+记$\xi=x+\frac{b}{a},\eta=y,\Delta=b^2-ac$
+$$\Rightarrow a^2\xi^2-\Delta\eta^2+\cdots=0$$
+$$\Delta\begin{cases}
+>0,&\text{双曲线}\\
+=0,&\text{抛物线}\\
+<0,&\text{椭圆}
+\end{cases}$$
+
+\noindent\textbf{二阶PDE的分类：}
+$$au_{xx}+2bu_{xy}+cu_{yy}+du_x+eu_y+fu+g=0$$
+
+
+
+\subsubsection{常系数}
+$$au_{xx}+2bu_{xy}+cu_{yy}=\Phi(u,u_x,u_y)$$
+
+其中$a,b,c$为常数
+
+设$a\ne0$，配方
+$$
+a\left(\frac{\partial}{\partial x}+\frac{b}{a}\frac{\partial}{\partial y}\right)^2u+\left(c-\frac{b^2}{a}\right)\frac{\partial^2u}{\partial y^2}=\Phi
+$$
+
+换元$(\xi,\eta)$
+$$\begin{aligned}
+    \frac{\partial}{\partial \xi}&=\frac{\partial}{\partial x}+\frac{b}{a}\frac{\partial}{\partial y}=x_{\xi}\frac{\partial}{\partial x}+y_{\xi}\frac{\partial}{\partial y}\\
+    \frac{\partial}{\partial \eta}&=\frac{\partial}{\partial y}=x_{\eta}\frac{\partial}{\partial x}+y_{\eta}\frac{\partial}{\partial y}
+\end{aligned}$$
+
+即
+$$\left(\begin{matrix}x\\y\end{matrix}\right)=\left(\begin{matrix}1&0\\\frac{b}{a}&1\end{matrix}\right)\left(\begin{matrix}\xi\\\eta\end{matrix}\right)
+$$
+Jacobian矩阵：
+$$
+\left(\begin{matrix}{x_{\xi}}&{x_{\eta}}\\{y_{\xi}}&{y_{\eta}}\\\end{matrix}\right)=\left(\begin{matrix}{1}&{0}\\{\frac{b}{a}}&{1}\\\end{matrix}\right)
+$$
+方程变为
+$$au_{\xi\xi}-\frac{\Delta}{a}u_{\eta\eta}=\Phi'\quad \Delta=b^2-ac$$
+$$\Delta\begin{cases}
+    >0,&\text{双曲型}\\
+    =0,&\text{抛物型}\\
+    <0,&\text{椭圆型}
+    \end{cases}$$
+
+\subsubsection{一般的情况}
+系数$a,b,...,g$皆为$(x,y)$的函数
+$$au_{xx}+2bu_{xy}+cu_{yy}+du_x+eu_y+fu+g=0$$
+
+换元$\xi(x,y),\eta(x,y)$，系数$A,B,...G$为$(\xi,\eta)$的函数
+$$Au_{\xi\xi}+2Bu_{\xi\eta}+Cu_{\eta\eta}+Du_\xi+Eu_\eta+fu+g=0$$
+
+寻找变换下的\textbf{不变量}：一个PDE的内在属性不应依赖于变量选取，所以尝试根据变量代换下的不变量对PDE分类。
+$$\left(\begin{array}{c}{{u_{x}}}\\{{u_{y}}}\\\end{array}\right)=\left(\begin{array}{cc}{{\xi_{x}}}&{{\eta_{x}}}\\{{\xi_{y}}}&{{\eta_{y}}}\\\end{array}\right)\left(\begin{array}{c}{{u_{y}}}\\{{u_{\eta}}}\\\end{array}\right)
+\equiv J\left(\begin{array}{c}{{u_{y}}}\\{{u_{\eta}}}\\\end{array}\right)$$
+$$\begin{aligned}
+    u_{x}&=\xi_{xx}u_{\xi}+\xi_{x}(u_{\xi})_{x}+\eta_{xx}u_{\eta}+\eta_{x}(u_{\eta})_{x}\\
+    &=\xi_{xx}u_{\xi}+\xi_{x}(\xi_{x}u_{\xi\xi}+\eta_{x}u_{\xi\eta})+\eta_{xx}u_{y}+\eta_{x}(\xi_{x}u_{\eta\xi}+\eta_{x}u_{\eta\eta})\\
+    &=(\xi_{x})^{2}u_{\xi\xi}+2\xi_{x}\eta_{x}u_{\xi\eta}+(\eta_{x})^{2}u_{\eta\eta}+\xi_{xx}u_{\xi}+\eta_{xx}u_{y}
+\end{aligned}$$
+
+$u_{xy},u_{yy},u_{x},u_{y}$同理
+
+$$\begin{aligned}
+    &A=a(\xi_x)^{2}+2b\xi_x\xi_y+c(\xi_y)^{2}\\
+    &B=a\xi_x\eta_{x}+b(\xi_x\eta_{y}+\xi_y\eta_{x})+c\xi_y\eta_{y}\\
+    &C=a(\eta_{x})^{2}+2b\eta_{x}\eta_{y}+c(\eta_{y})^{2}\\
+    &D=a\xi_{xx}+2b\xi_{xy}+c\xi_{yy}+d\xi_{x}+e\xi_{y}\\
+    &E=a\eta_{xx}+2b\eta_{xy}+c\eta_{yy}+d\eta_{x}+e\xi_{y}\\
+    &F=f\\
+    &G=g
+\end{aligned}$$
+
+可计算得到
+    $$\bar{\Delta}=B^2-AC=(\xi_x\eta_y-\xi_y\eta_x)^2\Delta$$
+
+    $$\bar{M}=\left(\begin{array}{cc}{A}&{B}\\{B}&{C}\\\end{array}\right)=J^{T}{M}J$$
+    $$\det\overline{M}=(\det{J})^2\det M\Rightarrow\overline{\Delta}=(\det J)^2\Delta $$
+    
+因此，$\boxed{\mathrm{sgn}(\Delta)\text{是不变量}}$
+    $$\mathrm{sgn}(\Delta)=
+    \begin{cases}
+        1&\Delta>0\quad \text{双曲型}\\
+        0&\Delta=0\quad \text{抛物型}\\
+        -1&\Delta<0\quad \text{椭圆型}
+    \end{cases}$$
+
+\subsubsection{特征方程}
+希望二阶偏导项系数$A,B,C$中有些为0，以简化方程。
+
+求$\xi$满足
+$$A=a(\xi_x)^{2}+2b\xi_x\xi_y+c(\xi_y)^{2}=0$$
+
+\begin{thm}
+    若$\phi(x,y)=k$（$k$为常数）是以下一阶常微分方程（称其为特征方程）的一个通解（即由$k$标记的一族积分曲线）
+    $$a(\frac{dy}{dx})^2-2b\frac{dy}{dx}+c=0$$
+    则$\xi=\phi(x,y)$是以下一阶偏微分方程的一个特解
+    $$a(\xi_x)^{2}+2b\xi_x\xi_y+c(\xi_y)^{2}=0$$
+\end{thm}
+\begin{prf}
+    $$\phi(x,y)=k\Rightarrow\varphi_{x}dx+\phi_{y}dy=0\Rightarrow\frac{dy}{dx}=-\frac{\phi_{x}}{\phi_y}$$
+
+    代入常微分方程：
+    $$\begin{aligned}
+        &a(-\frac{\phi_{x}}{\phi_y})^{2}-2b(-\frac{\phi_{x}}{\phi_y})+c=0\\
+        &a(\phi_x)^2+2b\phi_x\phi_y+c(\phi_y)^2=0\\
+        \xi=\phi(x,y)\Rightarrow\quad &a(\xi_x)^2+2b\xi _x\xi_y+c(\xi_y)^2=0
+        \end{aligned}$$
+\end{prf}
+
+\begin{dfn}[特征方程]
+    $$\boxed{a(\frac{dy}{dx})^2-2b\frac{dy}{dx}+c=0}$$
+\end{dfn}
+\noindent 1. $\Delta=b^2-ac>0$
+$$\frac{dy}{dx}=\frac{b\pm\sqrt{b^{2}-ac}}{a}=\frac{b\pm\sqrt{\Delta}}{a}$$
+$$\begin{aligned}
+    &\frac{dy}{dx}=\frac{b+\sqrt{\Delta}}{a}\quad\Rightarrow\phi(x,y)=k_{1}\quad\Rightarrow\xi=\phi(x,y)\Rightarrow A=0\\
+    &\frac{dy}{dx}=\frac{b-\sqrt{\Delta}}{a}\quad\Rightarrow\psi(x,y)=k_{2}\quad\Rightarrow\eta=\psi(x,y)\Rightarrow C=0
+\end{aligned}$$
+
+其中，$\phi(x,y)=k_{1}$和$\psi(x,y)=k_{2}$称为\textbf{特征线}
+
+$A=C=0,B\ne0$，方程只剩下交叉项.
+\begin{dfn}[双曲型PDE的标准形式]
+$$u_{\xi\eta}=\Phi_{1}(\xi,\eta,u,u_{\xi},u_{\eta})$$
+
+变量代换：$\psi=\xi+\eta,\sigma=\xi-\eta$
+$$\psi_{\rho\rho}-u_{\sigma\sigma}=\Phi_{2}(\rho,\sigma,u,u_{\rho},u_{\sigma})$$
+\end{dfn}
+
+
+\noindent 2. $\Delta=b^2-ac<0$
+$$\frac{dy}{dx}=\frac{b\pm i\sqrt{|\Delta|}}{a}$$
+$$\begin{aligned}
+    &\frac{dy}{dx}=\frac{b+i\sqrt{|\Delta|}}{a}\quad\Rightarrow\phi(x,y)=k_{1}\quad\Rightarrow\xi=\phi(x,y)\Rightarrow A=0\\
+    &\frac{dy}{dx}=\frac{b-i\sqrt{|\Delta|}}{a}\quad\Rightarrow\psi(x,y)=k_{2}\quad\Rightarrow\eta=\psi(x,y)\Rightarrow C=0
+\end{aligned}$$
+
+两方程互为复共轭，可取$\psi(x,y)=\phi^*(x,y)$
+\begin{dfn}[椭圆型PDE的标准形式]
+$$\begin{cases}\xi=\phi(x,y)\\\eta=\phi^{*}(x,y)\end{cases}\Rightarrow u_{\xi\eta}=\Phi_1(\xi,\eta,u,u_{\xi},u_{\eta})$$
+
+变量代换：$\rho=\xi+\eta,\sigma=i(\xi-\eta)\Rightarrow\dfrac{\partial}{\partial\xi}=\dfrac{\partial}{\partial\rho}+i\dfrac{\partial}{\partial\sigma},\dfrac{\partial}{\partial\eta}=\dfrac{\partial}{\partial\rho}-i\dfrac{\partial}{\partial\sigma}$
+$$u_{\rho\rho}+u_{\sigma\sigma}=\Phi_{2}(\rho,\sigma,u,u_{\rho},u_{\sigma})$$
+
+
+
+\end{dfn}
+
+\noindent 3. $\Delta=b^2-ac=0$
+$$\frac{dy}{dx}=\frac{b}{a}\Rightarrow\varphi(x,y)=k\Rightarrow\xi=\phi(x,y)\Rightarrow A=0$$
+$$\Delta=B^{2}-AC=0, A=0\Rightarrow B=0,C\neq0$$
+$$u_{\eta\eta}=\Phi(\xi,\eta,u,u_{\xi},u_{\eta})$$
+$\eta$可任选，需和$\xi$独立，即
+$$
+\mathrm{det}\left(\begin{array}{cc}{{\xi_{x}}}&{{\xi_{y}}}\\{{\eta_{x}}}&{{\eta_{y}}}\\\end{array}\right)\ne0
+$$
+
+\begin{ex}$x^{2}u_{xx}-2xyu_{xy}+y^{2}u_{yy}+xu_{x}+yu_{y}=0$
+
+    由$\Delta=(-xy)^{2}-x^{2}y^{2}=0$可知，方程为抛物型。由特征方程可得
+    $$a(\frac{dy}{dx})^{2}-2b\frac{dy}{dx}+c=0\Rightarrow\frac{dy}{dx}=\frac{b}{a}=\frac{-xy}{x^{2}}=-\frac{y}{x}$$
+    $$\Rightarrow\frac{dy}{y}+\frac{dx}{x}=0\Rightarrow\ln y+\ln x=k^{\prime}\Rightarrow xy=k$$
+
+    取$\xi=xy,\eta$可任取，取$\eta=y$
+    $$\begin{aligned}C&=y^{2}=\eta^{2}\\E&=y=\eta\quad D=F=G=0\end{aligned}$$
+    
+    简化后的方程为：
+    $$\eta^2u_{\eta\eta}+\eta u_\eta=0\Rightarrow\eta u_{\eta\eta}+u_\eta=0$$
+
+    令$\nu_\eta+v=0$，可得$\eta \nu_\eta+\nu=0$，为欧拉型的方程。再令$\eta=e^t$，有
+    $$v=\phi(\xi)e^{-t}=\frac{\phi(\xi)}{\eta}$$
+    
+    因此
+    $$\begin{aligned}u&=\varphi(\xi)\ln|\eta|+\phi(\xi)\\&=\varphi(xy)\ln|y|+\psi(x,y)\end{aligned}$$
+\end{ex}
+
+\begin{ex}[Tricomi方程]
+    $$yu_{xx}+u_{yy}=0$$
+
+    可以计算得$\Delta=-y$
+
+    \noindent 1. $y>0$：椭圆型
+    $$\text{特征方程：}y(\frac{dy}{dx})^{2}+1=0\ \Rightarrow\frac{dy}{dx}=\pm\frac{i}{\sqrt{y}}\quad\text{特征曲线：} x\pm i\frac{2}{3}y^{\frac{3}{2}}=k$$
+    
+    做变量代换：
+    $$\begin{cases}\xi=x\\\eta=\frac23y^\frac32&\end{cases}$$
+
+    计算可得在这组变量下方程的标准型为:
+    $$u_{\xi\xi}+u_{\eta\eta}+\frac{1}{3\eta}u_{\eta}=0$$
+    
+
+    \noindent 2. $y<0$ 
+    $$\text{特征方程：}y(\frac{dy}{dx})^{2}+1=0\ \Rightarrow\frac{dy}{dx}=\pm\frac{1}{\sqrt{-y}}\quad\text{特征曲线：} x\pm \frac{2}{3}(-y)^{\frac{3}{2}}=k$$
+    做变量代换：
+    $$\begin{cases}\rho=x\\\sigma=\frac23(-y)^{\frac32}&\end{cases}$$
+
+    计算可得在这组变量下方程的标准型为:
+    $$u_{\rho\rho}-u_{\sigma\sigma}-\frac1{3\sigma}u_\sigma=0.$$
+
+    \noindent 3. $y=0\Rightarrow u_{yy}|_{y=0}=0$
+
+\end{ex}
+
+\begin{ex}[常系数二阶PDE可消去一阶偏导项]
+
+    $$au_{xx}+2bu_{xy}+cu_{yy}+du_{x}+eu_{y}+fu+g=0$$
+    $$u=e^{\lambda x+\mu y}v(x,y)$$
+
+    $$\begin{aligned}
+        &a(v_{xx}+2v_{x}\lambda+\lambda^{2}v)e^{\lambda x+\mu y}+2b(v_{xy}+v_{x}\mu+v_{y}\lambda+\mu\lambda)e^{\lambda x+\mu y}\\
+       &+c(v_{yy}+2v_{y}\mu+\mu^{2}v)e^{\lambda x+\mu y}\\
+        &+d(v_{x}+\lambda v)e^{\lambda x+\mu y}+e(v_{y}+\mu v)e^{\lambda x+\mu y}+fve^{\lambda x+\mu y}+g=0
+    \end{aligned}$$
+
+    $$\begin{aligned}
+        &av_{xx}+2bv_{xy}+Cv_{yy}+(2\lambda a+2\mu b+d)v_{x}+(2\lambda b+2\mu c+e)v_{y}\\
+        &+(a\lambda^{2}+2\lambda\mu b+c\mu^{2}+\lambda d+\mu e+f)v+ge^{-\lambda x-\mu y}=0
+    \end{aligned}$$
+
+    $$\text{一阶偏导项}=0\Leftarrow
+    \begin{cases}
+        v_{x}\text{系数}&2\lambda a+2\mu b+d=0\\
+        v_{y}\text{系数}&2\lambda b+2\mu c+e=0
+    \end{cases}$$
+
+    $$\binom{a}{b}\binom{2\lambda}{2\mu}=\binom{-d}{-e}$$
+
+    $$\begin{pmatrix}\lambda\\\mu\end{pmatrix}
+    =\frac{1}{2}\begin{pmatrix}a&b\\b&c\end{pmatrix}^{-1}\begin{pmatrix}-d\\-e\end{pmatrix}
+    =\frac{1}{2\Delta}\begin{pmatrix}c&-b\\-b&a\end{pmatrix}\begin{pmatrix}d\\e\end{pmatrix}$$
+    $$\lambda=\frac{cd-be}{2\Delta},\mu=\frac{ae-bd}{2\Delta}$$
+\end{ex}
